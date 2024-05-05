@@ -1,0 +1,18 @@
+{% extends "base.jinja" %}
+
+{% block title %}Admin Panel{% endblock title %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/create-competition.css') }}">
+{% endblock head %}
+{% block body %}
+<h1>Create a competition</h1>
+<form id="main-form" action="{{ url_for('overview.create_competition') }}" method="post">
+    <input type="submit" value="Done" />
+    <div id="competitors-form"></div>
+    <button onclick="add_competitor()" type="button">Add competitor</button>
+    <div id="fields-form"></div>
+    <button onclick="add_field()" type="button">Add competitor</button>
+</form>
+<script src="{{ url_for('static', filename='js/create-competition.js') }}"></script>
+{% endblock body %}

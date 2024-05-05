@@ -1,0 +1,38 @@
+{% extends "base.jinja" %}
+
+{% block title %}Overview{% endblock title %}
+
+{% block head %}
+
+{% endblock head %}
+
+{% block body %}
+<h1>Overview</h1>
+
+{% if competition %}
+<h2>Here</h2>
+{% else %}
+<h2>Not here</h2>
+{% endif %}
+
+{% for competitor in competition.competitors %}
+<table>
+    <thead>
+        <th></th>
+        {% for field in competition.fields %}
+        <th>{{ field.name }}</th>
+        {% endfor %}
+    </thead>
+    <tbody>
+        {% for scorer in competitor.scores %}
+        <tr>
+            <th>{{ scorer }}</th>
+            {% for field in competitor.scores[scorer] %}
+            <td>{{ competitor.scores[scorer][field] }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endfor %}
+{% endblock body %}

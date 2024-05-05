@@ -1,0 +1,12 @@
+{% extends "base.jinja" %}
+
+{% block title %}Admin Panel{% endblock title %}
+
+{% block body %}
+<h1>Admin Panel</h1>
+<a href="create-competition">Create a competition</a>
+<a href="competition">Go to competition</a>
+<a href="delete-competition">Delete a competition</a>
+
+<h2>There is{% if not competition %} n't{% endif %} a competition playing currently</h2>
+{% endblock body %}

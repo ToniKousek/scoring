@@ -1,5 +1,10 @@
 {
     "cSpell.words": [
+        "endfor",
+        "stylesheet",
+        "tbody",
+        "thead",
         "venv"
-    ]
+    ],
+    "python.analysis.typeCheckingMode": "basic"
 }
