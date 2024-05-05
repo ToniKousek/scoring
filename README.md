@@ -45,3 +45,9 @@ Install flask
 ```shell
 $ pip install flask
 ```
+
+## Running the app
+
+```bash
+$ flask --app scoring run --debug
+```
