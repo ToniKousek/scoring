@@ -1,0 +1,9 @@
+[project]
+name = "scoring"
+version = "0.0.1"
+description = "An app for scoring performances in real time"
+dependencies = ["flask"]
+
+[build-system]
+requires = ["flit_core<4"]
+build-backend = "flit_core.buildapi"
