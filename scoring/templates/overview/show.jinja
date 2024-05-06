@@ -31,6 +31,7 @@
             {% for field in competitor.scores[scorer] %}
             <td>{{ competitor.scores[scorer][field] }}</td>
             {% endfor %}
+            <th><a href="{{ url_for('overview.delete_scorer', scorer_name=scorer) }}">Delete scorer</a></th>
         </tr>
         {% endfor %}
     </tbody>

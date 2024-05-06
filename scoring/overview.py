@@ -1,7 +1,10 @@
 from flask import (
     Blueprint,
+    abort,
+    redirect,
     render_template,
-    request
+    request,
+    url_for
 )
 
 from scoring.schema import (
@@ -60,3 +63,14 @@ def delete_comp():
 def show_competition():
 
     return render_template("overview/show.jinja", competition=get_competition())
+
+
+@bp.route("/delete-scorer/<scorer_name>")
+def delete_scorer(scorer_name):
+    comp = get_competition()
+    if comp is None:
+        abort(403)
+    
+    comp.remove_scorer(scorer_name)
+
+    return redirect(url_for('overview.show_competition'))

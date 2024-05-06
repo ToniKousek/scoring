@@ -57,6 +57,14 @@ class Competition:
         for competitor in self.competitors:
             competitor.scores[name] = {field: None for field in self.fields}
 
+    def remove_scorer(self, name: str):
+        if name not in self.scorers:
+            return
+        
+        self.scorers.remove(name)
+        for competitor in self.competitors:
+            competitor.scores.pop(name)
+
     def score(self, scorer_name: str, competitor_index: int, field: Field, value: int):
         self.competitors[competitor_index].score(scorer_name, field, value)
 
