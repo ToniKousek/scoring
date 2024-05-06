@@ -21,6 +21,9 @@ class Field:
             return False
         return other.name == self.name  # type: ignore
 
+    def __hash__(self) -> int:
+        return hash(self.name)
+
 
 class Competitor:
     def __init__(self, name: str, index: int) -> None:
@@ -47,6 +50,9 @@ class Competition:
         self.current_competitor_index = 0
 
     def add_scorer(self, name: str):
+        if name in self.scorers:
+            return
+
         self.scorers.append(name)
         for competitor in self.competitors:
             competitor.scores[name] = {field: None for field in self.fields}

@@ -1,0 +1,17 @@
+{% extends "base.jinja" %}
+
+{% block title %}View competition{% endblock title %}
+
+{% block body %}
+<h1>View competition as scorer</h1>
+<form method="post">
+    <ul>
+        {% for field in fields %}
+        <li>
+            <input id="{{ field.name }}" name="{{ field.name }}" type="range" min="0" , max="{{ field.max_value }}">
+        </li>
+        {% endfor %}
+    </ul>
+    <button type="submit">Done</button>
+</form>
+{% endblock body %}

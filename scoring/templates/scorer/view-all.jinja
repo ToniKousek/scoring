@@ -1,0 +1,18 @@
+{% extends "base.jinja" %}
+
+{% block title %}View competition{% endblock title %}
+
+{% block body %}
+<h1>View competition as scorer</h1>
+<div class="competitors">
+    {% for competitor in competition.competitors %}
+    <div>
+        <a href="{{ url_for('scorer.view_one', competitor_id=competitor.index) }}" class="competitor">{{ competitor.name
+            }}</a>
+        {% if competitor.index==competition.current_competitor_index %}
+        <span> - Current</span>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock body %}
