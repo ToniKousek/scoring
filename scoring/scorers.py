@@ -20,7 +20,8 @@ bp = Blueprint('scorer', __name__, url_prefix='/')
 def login_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
-        if g.user is None or get_competition() is None:
+        comp = get_competition()
+        if (g.user is None) or (comp is None) or (g.user not in comp.scorers):
             return redirect(url_for('scorer.index'))
 
         return view(**kwargs)
@@ -89,4 +90,4 @@ def view_one(competitor_id: int):
     return render_template(
         "scorer/view-one.jinja",
         fields=current_competitor.scores[g.user],
-        competitor = current_competitor)
+        competitor=current_competitor)
