@@ -2,16 +2,26 @@
 
 {% block title %}View competition{% endblock title %}
 
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/view-one-competitor.css') }}">
+{% endblock head %}
+
 {% block body %}
 <h1>View competition as scorer</h1>
 <form method="post">
+    <h2>Competitor {{ competitor.index }}: {{competitor.name}}</h2>
     <ul>
         {% for field in fields %}
         <li>
-            <input id="{{ field.name }}" name="{{ field.name }}" type="range" min="0" , max="{{ field.max_value }}">
+            <label for="{{ field.name }}">{{ field.name }}: </label>
+            <input id="{{ field.name }}" name="{{ field.name }}" type="range" min="0" max="{{ field.max_value }}" oninput="this.nextElementSibling.value = this.value">
+            <output>0</output>
         </li>
+
         {% endfor %}
     </ul>
+
     <button type="submit">Done</button>
+    <script src="{{ url_for('static', filename='js/view-one.js') }}"></script>
 </form>
 {% endblock body %}

@@ -16,11 +16,12 @@
 {% endif %}
 
 {% for competitor in competition.competitors %}
+<h2>{{ competitor.name }}</h2>
 <table>
     <thead>
-        <th></th>
+        <th>Scorer</th>
         {% for field in competition.fields %}
-        <th>{{ field.name }}</th>
+        <th>{{ field.name }} / {{ field.max_value }}</th>
         {% endfor %}
     </thead>
     <tbody>

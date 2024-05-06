@@ -86,4 +86,7 @@ def view_one(competitor_id: int):
                 int(request.form[field_name])
             )
 
-    return render_template("scorer/view-one.jinja", fields=current_competitor.scores[g.user])
+    return render_template(
+        "scorer/view-one.jinja",
+        fields=current_competitor.scores[g.user],
+        competitor = current_competitor)
