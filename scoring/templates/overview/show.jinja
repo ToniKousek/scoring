@@ -16,7 +16,14 @@
 {% endif %}
 
 {% for competitor in competition.competitors %}
-<h2>{{ competitor.name }}</h2>
+<h2>{{ competitor.name }} 
+{% if competition.current_competitor_index==competitor.index %}
+- Current
+{% else %}
+<a href="{{ url_for('overview.change_current_competitor', competitor_id=competitor.index) }}"> - Change to current</a>
+{% endif %}
+</h2>
+
 <table>
     <thead>
         <th>Scorer</th>

@@ -74,3 +74,13 @@ def delete_scorer(scorer_name):
     comp.remove_scorer(scorer_name)
 
     return redirect(url_for('overview.show_competition'))
+
+@bp.route("/change-current/<int:competitor_id>")
+def change_current_competitor(competitor_id: int):
+    comp = get_competition()
+    if comp is None:
+        abort(403)
+
+    comp.current_competitor_index = competitor_id
+    
+    return redirect(url_for("overview.show_competition"))
