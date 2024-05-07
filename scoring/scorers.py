@@ -86,6 +86,8 @@ def view_one(competitor_id: int):
                 curr_field,
                 int(request.form[field_name])
             )
+        
+        return redirect(url_for('scorer.view'))
 
     return render_template(
         "scorer/view-one.jinja",

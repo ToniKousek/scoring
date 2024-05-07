@@ -2,12 +2,17 @@
 
 {% block title %}Login{% endblock title %}
 
+{% block head %}
+<link href="{{url_for('static', filename='css/scorer-index.css')}}" rel="stylesheet" />
+{% endblock head %}
+
 {% block body %}
 <h1>Login as scorer</h1>
 
 <form action="/" method="post">
     <label for="scorer-name">Name: </label>
-    <input type="text" id="scorer-name" name="scorer-name" placeholder="{{ g.user }}">
+    <input type="text" id="scorer-name" name="scorer-name" 
+    {% if g.user %}value="{{ g.user }}"{% endif %}>
     <br />
     <input type="submit">
 </form>

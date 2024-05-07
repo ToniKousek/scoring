@@ -2,11 +2,15 @@
 
 {% block title %}View competition{% endblock title %}
 
+{% block head %}
+<link href="{{url_for('static', filename='css/view-all.css')}}" rel="stylesheet" />
+{% endblock head %}
+
 {% block body %}
 <h1>View competition as scorer</h1>
 <div class="competitors">
     {% for competitor in competition.competitors %}
-    <div>
+    <div class="competitor">
         <a href="{{ url_for('scorer.view_one', competitor_id=competitor.index) }}" class="competitor">{{ competitor.name
             }}</a>
         {% if competitor.index==competition.current_competitor_index %}

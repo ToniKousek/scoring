@@ -9,11 +9,11 @@
 {% block body %}
 <h1>View competition as scorer</h1>
 <form method="post">
-    <h2>Competitor {{ competitor.index }}: {{competitor.name}}</h2>
+    <h2>Competitor {{ competitor.index + 1 }}: {{competitor.name}}</h2>
     <ul>
         {% for field in fields %}
         <li>
-            <label for="{{ field.name }}">{{ field.name }}: </label>
+            <label for="{{ field.name }}">{{ field.name }}(max={{ field.max_value }}): </label>
             <input id="{{ field.name }}" name="{{ field.name }}" type="range" min="0" max="{{ field.max_value }}"
                 oninput="this.nextElementSibling.value = this.value">
             <output>0</output>
@@ -23,7 +23,6 @@
     </ul>
 
     <button type="submit">Done</button>
-    <script src="{{ url_for('static', filename='js/view-one.js') }}"></script>
 </form>
-<button type="button"><a href="{{ url_for('scorer.view') }}">Back</a></button>
+<script src="{{ url_for('static', filename='js/view-one.js') }}"></script>
 {% endblock body %}
