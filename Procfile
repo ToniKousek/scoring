@@ -1,0 +1,1 @@
+web: gunicorn scoring:create_app()
