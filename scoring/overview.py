@@ -53,7 +53,7 @@ def create_competition():
     return render_template("overview/index.jinja", competition=competition)
 
 
-@bp.route("/delete-competition", methods=("POST",))
+@bp.route("/delete-competition", methods=("POST","DELETE",))
 def delete_comp():
     delete_competition()
     return render_template("overview/index.jinja")

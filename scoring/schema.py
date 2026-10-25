@@ -39,11 +39,12 @@ class Competitor:
 class Competition:
     def __init__(
             self,
+            id: int,
             fields: list[Field],
             competitors: list[Competitor],
             scorers: list[str] | None = None,
     ) -> None:
-
+        self.id = id
         self.fields = fields
         self.competitors = competitors
         self.scorers = scorers if scorers else []
@@ -60,7 +61,7 @@ class Competition:
     def remove_scorer(self, name: str):
         if name not in self.scorers:
             return
-        
+
         self.scorers.remove(name)
         for competitor in self.competitors:
             competitor.scores.pop(name)
@@ -69,7 +70,35 @@ class Competition:
         self.competitors[competitor_index].score(scorer_name, field, value)
 
 
-competition: Competition | None = None
+class CompetitionsHandler:
+
+    def receive(self) -> CompetitionsHandler:
+        global competitionsHandler
+
+        if competitionsHandler == None:
+            competitionsHandler = self
+            self.competitions: dict[int, Competition] = {}
+
+        return competitionsHandler
+
+    def get_competition(self, id: int) -> Competition | None:
+        pass
+
+    def new_competition(
+        self,
+        fields: list[Field],
+        competitors: list[Competitor],
+        scorers: list[str] | None = None,
+    ) -> Competition:
+
+        competition = Competition(0, fields, competitors, scorers)
+
+        return competition
+
+
+competitionsHandler: CompetitionsHandler | None = None
+
+# competition: Competition | None = None
 
 
 def get_competition() -> Competition | None:
@@ -83,10 +112,15 @@ def new_competition(
     scorers: list[str] | None = None,
 ) -> Competition:
     global competition
-    competition = Competition(fields, competitors, scorers)
+    competition = Competition(0, fields, competitors, scorers)
     return competition
 
 
 def delete_competition():
     global competition
     competition = None
+
+
+class Organizer:
+    def __init__(self, name, id) -> None:
+        pass
